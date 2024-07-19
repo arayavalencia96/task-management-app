@@ -1,0 +1,68 @@
+<ul class="space-y-4 mb-3">
+  <li class="p-4 bg-white shadow rounded-lg">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <input
+          type="checkbox"
+          class="h-6 w-6 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
+          [checked]="task().isCompleted"
+          (change)="toggleCompletion(task().id, task().isCompleted)" />
+        <p
+          class="ml-4 text-lg text-gray-700"
+          [class.line-through]="task().isCompleted">
+          {{ task().title }}
+        </p>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button
+          (click)="openModal(task().id, 'detail')"
+          class="flex items-center text-blue-500 border-2 border-blue-500 p-2 rounded-lg hover:bg-blue-100">
+          <svg
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12" y2="8" />
+          </svg>
+        </button>
+        <button
+          (click)="openModal(task().id, 'form')"
+          class="flex items-center text-green-500 border-2 border-green-500 p-2 rounded-lg hover:bg-green-100">
+          <svg
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5l4 4-11 11H5v-4l11-11z" />
+          </svg>
+        </button>
+        <button
+          class="flex items-center text-red-500 border-2 border-red-500 p-2 rounded-lg hover:bg-red-100"
+          (click)="removeTask(task().id)">
+          <svg
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="15" y1="9" x2="9" y2="15" />
+            <line x1="9" y1="9" x2="15" y2="15" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </li>
+  <hr class="mt-2" />
+</ul>

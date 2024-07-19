@@ -1,0 +1,29 @@
+<div class="p-4 bg-gray-100 border border-gray-200 rounded-md shadow-md">
+  <h2 class="text-lg font-semibold mb-2">{{ task?.title }}</h2>
+  <div *ngIf="task?.description" data-testid="task-description">
+    <p class="text-gray-700 mb-2">
+      <strong>Description:</strong> {{ task?.description }}
+    </p>
+  </div>
+  <div *ngIf="task?.deadline" data-testid="task-deadline">
+    <p class="text-gray-700 mb-2">
+      <strong>Deadline:</strong> {{ task?.deadline }}
+    </p>
+  </div>
+  <p class="text-gray-700 mb-2" data-testid="task-status">
+    <strong>Status:</strong>
+    <span
+      class="font-bold {{
+        task?.isCompleted ? 'text-green-600' : 'text-red-600'
+      }}">
+      {{ task?.isCompleted ? 'Completed' : 'Pending' }}
+    </span>
+  </p>
+  <p class="text-gray-700 mb-2" data-testid="task-createdAt">
+    <strong>Created At:</strong> {{ task?.createdAt | date: 'dd/MM/yyyy' }}
+  </p>
+  <div *ngIf="task?.updatedAt" class="updated-at" data-testid="task-updatedAt">
+    <strong>Updated At:</strong>
+    <span>{{ task?.updatedAt | date: 'dd/MM/yyyy' }}</span>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<!-- task-modal.component.html -->
+<div
+  class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+  *ngIf="modalService.isVisible$ | async">
+  <div
+    class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-lg">
+    <div class="bg-white p-4">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          {{ isForUsersOrTasks === 'tasks' ? 'Task' : 'User' }}
+          {{ isForDetailOrForm === 'form' ? 'Form' : 'Detail' }}
+        </h3>
+        <button (click)="close()" class="text-gray-400 hover:text-gray-500">
+          <span class="sr-only">Close</span>
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      @defer (
+        when isForUsersOrTasks === 'tasks' && isForDetailOrForm === 'form'
+      ) {
+        <app-task-form />
+      }
+      @defer (
+        when isForUsersOrTasks === 'tasks' && isForDetailOrForm === 'detail'
+      ) {
+        <app-task-detail />
+      }
+      @defer (
+        when isForUsersOrTasks === 'users' && isForDetailOrForm === 'form'
+      ) {
+        <app-user-form [user]="user()" />
+      }
+      @defer (
+        when isForUsersOrTasks === 'users' && isForDetailOrForm === 'detail'
+      ) {
+        <app-user-detail />
+      }
+    </div>
+  </div>
+</div>
