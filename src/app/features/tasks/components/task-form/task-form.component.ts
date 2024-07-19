@@ -23,7 +23,7 @@ export class TaskFormComponent implements OnInit, OnDestroy {
   modalService = inject(ModalService);
 
   taskForm = this.formBuilder.group({
-    title: ['', [Validators.required, Validators.minLength(5)]],
+    title: ['', [Validators.required, Validators.minLength(3)]],
     description: [''],
     deadline: [''],
   });

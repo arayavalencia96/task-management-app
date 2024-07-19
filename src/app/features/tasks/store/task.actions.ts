@@ -30,23 +30,6 @@ export const unmarkTaskAsCompleted = createAction(
   props<{ id: string }>()
 );
 
-// TODO: De aquí para abajo no harían falta ya que estos no modifican directamente el estado de las tareas.
-
-export const selectTask = createAction(
-  '[TASK] selectTask',
-  props<{ id: string }>()
-);
-
 export const selectCompletedTasks = createAction(
   '[Task] Select Completed Tasks'
-);
-
-export const getUserForTask = createAction(
-  '[Task] Get User for Task',
-  props<{ taskId: string }>()
-);
-
-export const getTaskId = createAction(
-  '[Task] Get Task ID',
-  props<{ taskId: string }>()
 );
