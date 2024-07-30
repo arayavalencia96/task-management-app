@@ -32,6 +32,7 @@ export const initialStateUsers: UserState = {
       name: 'Axel',
       email: 'axel@gmail.com',
       username: 'axelaraya',
+      createdAt: new Date(),
     },
   ],
 };

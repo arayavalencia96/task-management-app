@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+
+import { Subscription } from 'rxjs';
+
 import { ModalService } from '@shared/components/modal/modal.service';
+
 import { Task } from '@tasks/models/task.interface';
 import { selectTaskById } from '@tasks/store/task.selectors';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-task-detail',

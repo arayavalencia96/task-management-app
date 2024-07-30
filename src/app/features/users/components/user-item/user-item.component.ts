@@ -1,46 +1,35 @@
-import { Component, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject, input } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
 import { ModalService } from '@shared/components/modal/modal.service';
+
 import { ModalComponent } from '@shared/components/modal/modal.component';
 
-import {
-  markTaskAsCompleted,
-  removeTask,
-  unmarkTaskAsCompleted,
-} from '@tasks/store/task.actions';
-import { Task } from '@tasks/models/task.interface';
+import { removeUser } from '@users/store/user.actions';
+import { User } from '@users/models/user.interface';
 
 @Component({
-  selector: 'app-task-item',
+  selector: 'app-user-item',
   standalone: true,
   imports: [CommonModule, ModalComponent],
-  templateUrl: './task-item.component.html',
+  templateUrl: './user-item.component.html',
 })
-export class TaskItemComponent {
+export class UserItemComponent {
   store = inject(Store);
   modalService = inject(ModalService);
 
-  task = input.required<Task>();
+  user = input.required<User>();
 
-  toggleCompletion(id: string, isCompleted: boolean): void {
-    if (isCompleted) {
-      this.store.dispatch(unmarkTaskAsCompleted({ id }));
-    } else {
-      this.store.dispatch(markTaskAsCompleted({ id }));
-    }
-  }
-
-  removeTask(id: string): void {
-    this.store.dispatch(removeTask({ id }));
+  removeUser(id: string): void {
+    this.store.dispatch(removeUser({ id }));
   }
 
   openModal(id: string, component: string): void {
     this.modalService.open();
     this.modalService.setID(id);
-    this.modalService.setIsForUsersOrTasks('tasks');
+    this.modalService.setIsForUsersOrTasks('users');
     this.modalService.setIsForCreateOrUpdate('update');
     if (component === 'form') {
       this.modalService.setIsForDetailOrForm('form');

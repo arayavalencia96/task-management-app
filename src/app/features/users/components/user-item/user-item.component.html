@@ -1,21 +1,18 @@
 <ul class="space-y-4 mb-3">
   <li class="p-4 bg-white shadow rounded-lg">
     <div class="flex flex-col md:items-center md:justify-between md:flex-row">
-      <div class="flex items-start mb-4 md:items-center">
-        <input
-          type="checkbox"
-          class="h-6 w-6 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
-          [checked]="task().isCompleted"
-          (change)="toggleCompletion(task().id, task().isCompleted)" />
-        <p
-          class="ml-4 text-lg text-gray-700"
-          [class.line-through]="task().isCompleted">
-          {{ task().title }}
+      <div class="flex space-x-4 items-start mb-4 md:items-center">
+        <p class="text-xl font-semibold text-gray-900">
+          {{ user().name }}
+        </p>
+        <div class="border-l border-gray-300 h-6"></div>
+        <p class="text-md text-gray-500">
+          {{ user().username }}
         </p>
       </div>
       <div class="flex space-x-2 items-center">
         <button
-          (click)="openModal(task().id, 'detail')"
+          (click)="openModal(user().id, 'detail')"
           class="flex flex-grow items-center justify-center text-blue-500 border-2 border-blue-500 p-2 rounded-lg hover:bg-blue-100">
           <svg
             class="h-6 w-6"
@@ -31,7 +28,7 @@
           </svg>
         </button>
         <button
-          (click)="openModal(task().id, 'form')"
+          (click)="openModal(user().id, 'form')"
           class="flex flex-grow items-center justify-center text-green-500 border-2 border-green-500 p-2 rounded-lg hover:bg-green-100">
           <svg
             class="h-6 w-6"
@@ -47,7 +44,7 @@
         </button>
         <button
           class="flex flex-grow items-center justify-center text-red-500 border-2 border-red-500 p-2 rounded-lg hover:bg-red-100"
-          (click)="removeTask(task().id)">
+          (click)="removeUser(user().id)">
           <svg
             class="h-6 w-6"
             viewBox="0 0 24 24"

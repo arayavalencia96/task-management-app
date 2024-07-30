@@ -13,13 +13,20 @@ import { initialStateUsers } from '@data';
 
 export const usersReducerFn = createReducer(
   initialStateUsers,
-  on(addUser, (state, { user }) => ({
+  on(addUser, (state, { name, username, email }) => ({
     ...state,
-    users: [...state.users, { ...user, id: uuidv4() }],
+    users: [
+      ...state.users,
+      { id: uuidv4(), name, username, email, createdAt: new Date() },
+    ],
   })),
-  on(updateUser, (state, { userId, updatedUser }) => ({
+  on(updateUser, (state, { userId, name, username, email }) => ({
     ...state,
-    users: state.users.map(user => (user.id === userId ? updatedUser : user)),
+    users: state.users.map(user =>
+      user.id === userId
+        ? { ...user, name, username, email, updatedAt: new Date() }
+        : user
+    ),
   })),
   on(removeUser, (state, { id }) => ({
     ...state,

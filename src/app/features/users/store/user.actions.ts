@@ -1,11 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from '@users/models/user.interface';
 
-export const addUser = createAction('[User] Add User', props<{ user: User }>());
+export const addUser = createAction(
+  '[User] Add User',
+  props<{ name: string; email: string; username: string }>()
+);
 
 export const updateUser = createAction(
   '[USER] updateUser',
-  props<{ userId: string; updatedUser: User }>()
+  props<{ userId: string; name: string; email: string; username: string }>()
 );
 
 export const removeUser = createAction(

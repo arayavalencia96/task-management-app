@@ -1,4 +1,9 @@
 <div class="pt-8">
-  <app-task-list></app-task-list>
+  <app-dashboard></app-dashboard>
+  @if (showUsersOrTasks === 'tasks') {
+    <app-task-list></app-task-list>
+  } @else {
+    <app-user-list></app-user-list>
+  }
   <app-modal></app-modal>
 </div>

@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
+
 import { Subscription } from 'rxjs';
 
+import { select, Store } from '@ngrx/store';
+
 import { ModalService } from '@shared/components/modal/modal.service';
+
 import { Task } from '@tasks/models/task.interface';
 import { addTask, updateTask } from '@tasks/store/task.actions';
 import { selectTaskById } from '@tasks/store/task.selectors';

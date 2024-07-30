@@ -1,16 +1,19 @@
 import { Component, inject, input, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { combineLatest, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
 import { ModalService } from './modal.service';
-import { CommonModule } from '@angular/common';
-import { combineLatest, Subscription } from 'rxjs';
+
+import { TaskDetailComponent } from '@tasks/components/task-detail/task-detail.component';
 import { TaskFormComponent } from '@tasks/components/task-form/task-form.component';
+import { UserDetailComponent } from '@users/components/user-detail/user-detail.component';
 import { UserFormComponent } from '@users/components/user-form/user-form.component';
+
 import { Task } from '@tasks/models/task.interface';
 import { User } from '@users/models/user.interface';
-import { TaskDetailComponent } from '@tasks/components/task-detail/task-detail.component';
-import { UserDetailComponent } from '@users/components/user-detail/user-detail.component';
 
 @Component({
   selector: 'app-modal',

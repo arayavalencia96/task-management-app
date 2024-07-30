@@ -5,9 +5,10 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+
+import { routes } from './app.routes';
 import { appReducer } from './store/app.store';
 
 export const appConfig: ApplicationConfig = {

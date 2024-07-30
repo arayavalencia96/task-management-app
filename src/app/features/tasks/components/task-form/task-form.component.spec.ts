@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+
 import { BehaviorSubject } from 'rxjs';
 
-import { TaskFormComponent } from './task-form.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+
 import { ModalService } from '@shared/components/modal/modal.service';
+import { TaskFormComponent } from './task-form.component';
+
 import { addTask, updateTask } from '@tasks/store/task.actions';
 import { selectTaskById } from '@tasks/store/task.selectors';
 

@@ -1,11 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TaskDetailComponent } from './task-detail.component';
-import { BehaviorSubject } from 'rxjs';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { ModalService } from '@shared/components/modal/modal.service';
-import { selectTaskById } from '@tasks/store/task.selectors';
 import { CommonModule } from '@angular/common';
+
+import { BehaviorSubject } from 'rxjs';
+
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+
+import { ModalService } from '@shared/components/modal/modal.service';
+import { TaskDetailComponent } from './task-detail.component';
+import { selectTaskById } from '@tasks/store/task.selectors';
 
 describe('TaskDetailComponent', () => {
   let component: TaskDetailComponent;

@@ -33,8 +33,20 @@ describe('Task Selectors', () => {
   };
 
   const users: User[] = [
-    { id: '1', name: 'User 1', username: 'username1', email: 'username1@example.com' },
-    { id: '2', name: 'User 2', username: 'username2', email: 'username2@example.com' },
+    {
+      id: '1',
+      name: 'User 1',
+      username: 'username1',
+      email: 'username1@example.com',
+      createdAt: new Date(),
+    },
+    {
+      id: '2',
+      name: 'User 2',
+      username: 'username2',
+      email: 'username2@example.com',
+      createdAt: new Date(),
+    },
   ];
 
   it('should select all tasks', () => {

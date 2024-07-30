@@ -1,0 +1,16 @@
+<div class="p-4 bg-gray-100 border border-gray-200 rounded-md shadow-md">
+  <h2 class="text-lg font-semibold mb-2">{{ user?.name }}</h2>
+  <p class="text-gray-700 mb-2" data-testid="user-email">
+    <strong>Email:</strong> {{ user?.email }}
+  </p>
+  <p class="text-gray-700 mb-2" data-testid="user-username">
+    <strong>Username:</strong> {{ user?.username }}
+  </p>
+  <p class="text-gray-700 mb-2">
+    <strong>Created At:</strong> {{ user?.createdAt | date: 'dd/MM/yyyy' }}
+  </p>
+  <div *ngIf="user?.updatedAt" class="updated-at" data-testid="user-updatedAt">
+    <strong>Updated At:</strong>
+    <span>{{ user?.updatedAt | date: 'dd/MM/yyyy' }}</span>
+  </div>
+</div>
