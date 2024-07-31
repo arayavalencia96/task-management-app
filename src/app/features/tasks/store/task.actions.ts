@@ -2,7 +2,12 @@ import { createAction, props } from '@ngrx/store';
 
 export const addTask = createAction(
   '[TASK] addTask',
-  props<{ title: string; description: string; deadline: string }>()
+  props<{
+    title: string;
+    description: string;
+    userID?: string;
+    deadline: string;
+  }>()
 );
 
 export const updateTask = createAction(
@@ -11,6 +16,7 @@ export const updateTask = createAction(
     taskId: string;
     title: string;
     description: string;
+    userID?: string;
     deadline: string;
   }>()
 );

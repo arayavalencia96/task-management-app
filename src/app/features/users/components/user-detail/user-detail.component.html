@@ -13,4 +13,13 @@
     <strong>Updated At:</strong>
     <span>{{ user?.updatedAt | date: 'dd/MM/yyyy' }}</span>
   </div>
+  @if (tasks && tasks.length > 0) {
+    <p class="text-lg font-semibold text-gray-700">Tasks</p>
+    <ul class="space-y-2 mt-2">
+      <li *ngFor="let task of tasks" class="p-3 bg-gray-100 rounded-lg">
+        <p class="text-gray-800">{{ task.title }}</p>
+        <p class="text-gray-600 text-sm">{{ task.description }}</p>
+      </li>
+    </ul>
+  }
 </div>

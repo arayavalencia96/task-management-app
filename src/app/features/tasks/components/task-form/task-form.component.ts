@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { Subscription } from 'rxjs';
+import { combineLatest, Observable, of, Subscription } from 'rxjs';
 
 import { select, Store } from '@ngrx/store';
 
@@ -11,6 +11,8 @@ import { ModalService } from '@shared/components/modal/modal.service';
 import { Task } from '@tasks/models/task.interface';
 import { addTask, updateTask } from '@tasks/store/task.actions';
 import { selectTaskById } from '@tasks/store/task.selectors';
+import { selectAllUsers } from '@users/store/user.selectors';
+import { User } from '@users/models/user.interface';
 
 @Component({
   selector: 'app-task-form',
@@ -25,12 +27,6 @@ export class TaskFormComponent implements OnInit, OnDestroy {
   formBuilder = inject(FormBuilder);
   modalService = inject(ModalService);
 
-  taskForm = this.formBuilder.group({
-    title: ['', [Validators.required, Validators.minLength(3)]],
-    description: [''],
-    deadline: [''],
-  });
-
   id: string = '';
   isForCreateOrUpdate: string = '';
   task: Task | undefined = {
@@ -41,13 +37,33 @@ export class TaskFormComponent implements OnInit, OnDestroy {
     isCompleted: false,
     createdAt: new Date(),
   };
+  user: User | undefined = {
+    id: '',
+    name: '',
+    username: '',
+    email: '',
+    createdAt: new Date(),
+    tasks: [],
+  };
+  users$: Observable<User[]> = new Observable<User[]>();
+
+  taskForm = this.formBuilder.group({
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    description: [''],
+    user: [''],
+    deadline: [''],
+  });
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.modalService.isForUsersOrTasks$.subscribe(res => {
-        if (res === 'tasks') {
+      combineLatest([
+        this.modalService.isForUsersOrTasks$,
+        this.store.select(selectAllUsers),
+      ]).subscribe(([isForUsersOrTasks, allUsers$]) => {
+        if (isForUsersOrTasks === 'tasks') {
           this.handleCreateOrUpdate();
         }
+        this.users$ = of(allUsers$);
       })
     );
   }
@@ -62,6 +78,7 @@ export class TaskFormComponent implements OnInit, OnDestroy {
         addTask({
           title: this.taskForm.get('title')?.value ?? '',
           description: this.taskForm.get('description')?.value ?? '',
+          userID: this.taskForm.get('user')?.value ?? '',
           deadline: this.taskForm.get('deadline')?.value ?? '',
         })
       );
@@ -82,6 +99,7 @@ export class TaskFormComponent implements OnInit, OnDestroy {
     this.taskForm.patchValue({
       title: this.task?.title,
       description: this.task?.description,
+      user: this.task?.userID,
       deadline: this.task?.deadline,
     });
   }
@@ -93,6 +111,7 @@ export class TaskFormComponent implements OnInit, OnDestroy {
           taskId: this.id,
           title: this.taskForm.get('title')?.value ?? '',
           description: this.taskForm.get('description')?.value ?? '',
+          userID: this.taskForm.get('user')?.value ?? '',
           deadline: this.taskForm.get('deadline')?.value ?? '',
         })
       );

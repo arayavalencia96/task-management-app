@@ -16,6 +16,17 @@
       placeholder="Description"
       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
   </div>
+  <div class="mb-5">
+    <select
+      id="user"
+      formControlName="user"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <option value="" disabled selected>Choose an user</option>
+      <option *ngFor="let user of users$ | async" [value]="user.id">
+        {{ user.name }}
+      </option>
+    </select>
+  </div>
   <div class="relative max-w-sm mb-5">
     <div
       class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

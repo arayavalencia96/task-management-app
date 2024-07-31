@@ -14,7 +14,7 @@ export const selectAllUsers = createSelector(
 );
 
 // Obtener un usuario
-export const selectUserById = (userID: string) =>
+export const selectUserById = (userID: string | undefined) =>
   createSelector(selectAllUsers, users =>
     users?.find(user => user.id === userID)
   );

@@ -5,6 +5,9 @@
       <strong>Description:</strong> {{ task?.description }}
     </p>
   </div>
+  <div *ngIf="task?.userID" data-testid="task-user">
+    <p class="text-gray-700 mb-2"><strong>User:</strong> {{ user }}</p>
+  </div>
   <div *ngIf="task?.deadline" data-testid="task-deadline">
     <p class="text-gray-700 mb-2">
       <strong>Deadline:</strong> {{ task?.deadline }}

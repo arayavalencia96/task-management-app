@@ -35,6 +35,8 @@ export const selectUserForTask = (taskId: string) =>
     selectAllUsers,
     (tasks: Task[], users: User[]) => {
       const task = tasks?.find(t => t?.id === taskId);
-      return task ? users?.find((user: User) => user?.id === task?.userID) : null;
+      return task
+        ? users?.find((user: User) => user?.id === task?.userID)
+        : null;
     }
   );

@@ -78,6 +78,7 @@ describe('TaskFormComponent', () => {
     component.taskForm.setValue({
       title: 'New Task',
       description: 'New Description',
+      user: '',
       deadline: '2024-07-20',
     });
     component.sendForm();
@@ -86,6 +87,7 @@ describe('TaskFormComponent', () => {
       addTask({
         title: 'New Task',
         description: 'New Description',
+        userID: '',
         deadline: '2024-07-20',
       })
     );
@@ -98,6 +100,7 @@ describe('TaskFormComponent', () => {
     component.taskForm.setValue({
       title: 'Updated Task',
       description: 'Updated Description',
+      user: '',
       deadline: '2024-07-21',
     });
     component.sendForm();
@@ -107,6 +110,7 @@ describe('TaskFormComponent', () => {
         taskId: '1',
         title: 'Updated Task',
         description: 'Updated Description',
+        userID: '',
         deadline: '2024-07-21',
       })
     );

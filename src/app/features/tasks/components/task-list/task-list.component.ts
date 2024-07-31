@@ -9,7 +9,6 @@ import { ModalService } from '@shared/components/modal/modal.service';
 
 import { TaskItemComponent } from './../task-item/task-item.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
-import { ModalComponent } from '@shared/components/modal/modal.component';
 
 import { setPage } from '@core/store/pagination/pagination.actions';
 import { selectAllTasks } from '@tasks/store/task.selectors';
@@ -28,7 +27,6 @@ import { Task } from '@tasks/models/task.interface';
     ReactiveFormsModule,
     TaskItemComponent,
     TaskFormComponent,
-    ModalComponent,
   ],
   templateUrl: './task-list.component.html',
 })

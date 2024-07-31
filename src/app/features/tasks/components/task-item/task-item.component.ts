@@ -1,10 +1,9 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import { ModalService } from '@shared/components/modal/modal.service';
-import { ModalComponent } from '@shared/components/modal/modal.component';
 
 import {
   markTaskAsCompleted,
@@ -12,18 +11,29 @@ import {
   unmarkTaskAsCompleted,
 } from '@tasks/store/task.actions';
 import { Task } from '@tasks/models/task.interface';
+import { selectUserById } from '@users/store/user.selectors';
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [CommonModule, ModalComponent],
+  imports: [CommonModule],
   templateUrl: './task-item.component.html',
 })
-export class TaskItemComponent {
+export class TaskItemComponent implements OnInit {
   store = inject(Store);
   modalService = inject(ModalService);
 
   task = input.required<Task>();
+
+  userName?: string = '';
+
+  ngOnInit(): void {
+    this.store
+      .pipe(select(selectUserById(this.task().userID)))
+      .subscribe(user => {
+        this.userName = user?.name;
+      });
+  }
 
   toggleCompletion(id: string, isCompleted: boolean): void {
     if (isCompleted) {

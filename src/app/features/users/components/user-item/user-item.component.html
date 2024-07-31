@@ -9,6 +9,15 @@
         <p class="text-md text-gray-500">
           {{ user().username }}
         </p>
+        @if (tasks && tasks.length >= 1) {
+          <div class="border-l border-gray-300 h-6"></div>
+          <p *ngIf="tasks.length === 1" class="text-md text-gray-500">
+            {{ tasks.length }} Task
+          </p>
+          <p *ngIf="tasks.length > 1" class="text-md text-gray-500">
+            {{ tasks.length }} Tasks
+          </p>
+        }
       </div>
       <div class="flex space-x-2 items-center">
         <button

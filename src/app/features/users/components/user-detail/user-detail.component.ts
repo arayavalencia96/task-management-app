@@ -1,21 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
 import { select, Store } from '@ngrx/store';
 
 import { ModalService } from '@shared/components/modal/modal.service';
-import { selectUserById } from '@users/store/user.selectors';
+import {
+  selectTasksForUser,
+  selectUserById,
+} from '@users/store/user.selectors';
 import { User } from '@users/models/user.interface';
+import { Task } from '@tasks/models/task.interface';
+import { TaskListComponent } from '@tasks/components/task-list/task-list.component';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TaskListComponent],
   templateUrl: './user-detail.component.html',
 })
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit {
   private subscriptions: Subscription = new Subscription();
 
   store = inject(Store);
@@ -31,6 +36,8 @@ export class UserDetailComponent {
     username: '',
   };
 
+  tasks: Task[] = [];
+
   ngOnInit(): void {
     this.handleUserSelection();
   }
@@ -45,6 +52,9 @@ export class UserDetailComponent {
         this.id = id;
         this.store.pipe(select(selectUserById(id))).subscribe(user => {
           this.user = user;
+        });
+        this.store.pipe(select(selectTasksForUser(id))).subscribe(tasks => {
+          this.tasks = tasks;
         });
       })
     );

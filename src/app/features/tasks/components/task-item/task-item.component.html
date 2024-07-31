@@ -1,7 +1,7 @@
 <ul class="space-y-4 mb-3">
   <li class="p-4 bg-white shadow rounded-lg">
     <div class="flex flex-col md:items-center md:justify-between md:flex-row">
-      <div class="flex items-start mb-4 md:items-center">
+      <div class="flex items-start mb-4 md:items-center space-x-4">
         <input
           type="checkbox"
           class="h-6 w-6 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
@@ -11,6 +11,10 @@
           class="ml-4 text-lg text-gray-700"
           [class.line-through]="task().isCompleted">
           {{ task().title }}
+        </p>
+        <div *ngIf="userName" class="border-l border-gray-300 h-6"></div>
+        <p *ngIf="userName" class="text-md text-gray-500">
+          {{ userName }}
         </p>
       </div>
       <div class="flex space-x-2 items-center">

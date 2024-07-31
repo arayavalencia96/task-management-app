@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import { ModalService } from '@shared/components/modal/modal.service';
 
@@ -9,6 +9,8 @@ import { ModalComponent } from '@shared/components/modal/modal.component';
 
 import { removeUser } from '@users/store/user.actions';
 import { User } from '@users/models/user.interface';
+import { selectTasksForUser } from '@users/store/user.selectors';
+import { Task } from '@tasks/models/task.interface';
 
 @Component({
   selector: 'app-user-item',
@@ -16,11 +18,20 @@ import { User } from '@users/models/user.interface';
   imports: [CommonModule, ModalComponent],
   templateUrl: './user-item.component.html',
 })
-export class UserItemComponent {
+export class UserItemComponent implements OnInit {
   store = inject(Store);
   modalService = inject(ModalService);
 
   user = input.required<User>();
+  tasks: Task[] = [];
+
+  ngOnInit(): void {
+    this.store
+      .pipe(select(selectTasksForUser(this.user().id)))
+      .subscribe(tasks => {
+        this.tasks = tasks;
+      });
+  }
 
   removeUser(id: string): void {
     this.store.dispatch(removeUser({ id }));
