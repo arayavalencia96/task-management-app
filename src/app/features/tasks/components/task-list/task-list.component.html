@@ -53,12 +53,24 @@
     </div>
   </div>
   <div class="bg-white shadow-lg rounded-lg p-6 mb-4">
-    <ul class="space-y-2">
+    <ul
+      class="space-y-2"
+      *ngIf="(tasks$ | async)?.length; else noTasksTemplate">
       <li *ngFor="let task of tasks$ | async; trackBy: trackByTaskId">
         <app-task-item [task]="task"></app-task-item>
       </li>
     </ul>
-    <div class="flex justify-center mt-4">
+
+    <ng-template #noTasksTemplate>
+      <div class="text-center py-16">
+        <h2 class="text-2xl font-bold mb-2">No Tasks Yet</h2>
+        <p class="text-gray-600">
+          You haven't added any tasks yet. Start by creating a new task!
+        </p>
+      </div>
+    </ng-template>
+
+    <div class="flex justify-center mt-4" *ngIf="totalItems > 4">
       <button
         (click)="prevPage()"
         [disabled]="!canGoPrev()"

@@ -11,7 +11,6 @@ describe('ModalComponent', () => {
   let component: ModalComponent;
   let fixture: ComponentFixture<ModalComponent>;
 
-  let store: MockStore;
   let modalService: jasmine.SpyObj<ModalService>;
   let isForUsersOrTasksSubject: BehaviorSubject<string>;
   let isForDetailOrFormSubject: BehaviorSubject<string>;

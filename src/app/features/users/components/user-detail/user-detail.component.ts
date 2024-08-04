@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -20,7 +20,7 @@ import { TaskListComponent } from '@tasks/components/task-list/task-list.compone
   imports: [CommonModule, TaskListComponent],
   templateUrl: './user-detail.component.html',
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
 
   store = inject(Store);

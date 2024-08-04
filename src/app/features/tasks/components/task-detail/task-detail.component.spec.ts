@@ -55,6 +55,7 @@ describe('TaskDetailComponent', () => {
     fixture.detectChanges();
 
     await new Promise<void>(resolve => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       modalService.id$.subscribe(id => {
         expect(component.id).toBe('1');
         resolve();

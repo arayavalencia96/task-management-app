@@ -1,0 +1,10 @@
+<div class="pt-8 flex-grow container">
+  <app-dashboard></app-dashboard>
+  <ng-container *ngIf="showUsersOrTasks === 'tasks'; else userContent">
+    <app-task-list></app-task-list>
+  </ng-container>
+  <ng-template #userContent>
+    <app-user-list></app-user-list>
+  </ng-template>
+  <app-modal></app-modal>
+</div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { combineLatest, map, Observable, startWith, take } from 'rxjs';
@@ -32,7 +32,7 @@ import { User } from '@users/models/user.interface';
   ],
   templateUrl: './user-list.component.html',
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
   modalService = inject(ModalService);
   store = inject(Store);
 

@@ -1,9 +1,16 @@
-<div class="pt-8">
-  <app-dashboard></app-dashboard>
-  @if (showUsersOrTasks === 'tasks') {
-    <app-task-list></app-task-list>
-  } @else {
-    <app-user-list></app-user-list>
-  }
-  <app-modal></app-modal>
+<div class="flex flex-col min-h-screen">
+  <app-navbar
+    [name]="activeAccount?.name"
+    [loginDisplay]="loginDisplay"></app-navbar>
+
+  <main class="flex-grow container mx-auto p-4">
+    <ng-container *ngIf="!loginDisplay; else homeContent">
+      <app-landing></app-landing>
+    </ng-container>
+    <ng-template #homeContent>
+      <app-home></app-home>
+    </ng-template>
+  </main>
+
+  <app-footer></app-footer>
 </div>

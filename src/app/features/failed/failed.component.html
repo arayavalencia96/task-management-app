@@ -1,0 +1,18 @@
+<div class="min-h-screen flex flex-col justify-center items-center bg-gray-100">
+  <div class="bg-white shadow-md rounded-lg p-8 max-w-md mx-auto text-center">
+    <img
+      src="assets/error-image.png"
+      alt="Error"
+      class="w-32 h-32 mx-auto mb-4" />
+    <h1 class="text-2xl font-semibold text-red-500">Login Failed</h1>
+    <p class="mt-4 text-gray-700">
+      Oops! Something went wrong while trying to sign in. Please check your
+      credentials and try again.
+    </p>
+    <button
+      class="mt-2 text-gray-700 hover:text-gray-900"
+      (click)="goToLanding()">
+      Back to Home
+    </button>
+  </div>
+</div>
